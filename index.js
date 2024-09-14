@@ -1,6 +1,5 @@
 let userForm = document.getElementById("user-form");
 
-// Function to retrieve entries from localStorage
 const retrieveEntries = () => {
     let entries = localStorage.getItem("user-entries");
     if (entries) {
@@ -11,7 +10,7 @@ const retrieveEntries = () => {
     return entries;
 };
 
-// Display entries in the table
+
 const displayEntries = () => {
     const entries = retrieveEntries();
     const tableEntries = entries.map((entry) => {
@@ -42,7 +41,7 @@ const displayEntries = () => {
         </table>`;
 };
 
-// Function to save user data
+
 const saveUserForm = (event) => {
     event.preventDefault();
     const name = document.getElementById("name").value;
@@ -65,9 +64,9 @@ const saveUserForm = (event) => {
     displayEntries();
 };
 
-// Attach event listener to form submission
+
 userForm.addEventListener("submit", saveUserForm);
 
-// Display entries on page load
+/
 displayEntries();
 
