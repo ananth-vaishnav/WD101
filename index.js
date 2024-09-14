@@ -1,5 +1,6 @@
 let userForm = document.getElementById("user-form");
 
+
 const retrieveEntries = () => {
     let entries = localStorage.getItem("user-entries");
     if (entries) {
@@ -18,7 +19,7 @@ const displayEntries = () => {
         const emailCell = `<td class='border px-4 py-2'>${entry.email}</td>`;
         const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
         const dobCell = `<td class='border px-4 py-2'>${entry.dob}</td>`;
-        const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndConditions}</td>`;
+        const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndConditions ? 'Yes' : 'No'}</td>`;
         const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptTermsCell}</tr>`;
         return row;
     }).join("\n");
@@ -42,12 +43,37 @@ const displayEntries = () => {
 };
 
 
+const validateDOB = (dob) => {
+    const dobDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - dobDate.getFullYear();
+    const monthDifference = today.getMonth() - dobDate.getMonth();
+
+
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
+    }
+
+    return age >= 18 && age <= 55;
+};
+
+
 const saveUserForm = (event) => {
     event.preventDefault();
+
+    const dob = document.getElementById("dob").value;
+    if (!validateDOB(dob)) {
+        alert("Your age must be between 18 and 55 to register.");
+        document.getElementById("dob").classList.add('invalid');
+        return;
+    } else {
+        document.getElementById("dob").classList.remove('invalid');
+        document.getElementById("dob").classList.add('valid');
+    }
+
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const dob = document.getElementById("dob").value;
     const acceptedTermsAndConditions = document.getElementById("acceptTerms").checked;
 
     const entry = {
@@ -67,6 +93,5 @@ const saveUserForm = (event) => {
 
 userForm.addEventListener("submit", saveUserForm);
 
-/
-displayEntries();
 
+displayEntries();
