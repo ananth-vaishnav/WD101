@@ -1,56 +1,40 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Registration Form</title>
-    <style>
-        input#name:invalid:focus {
-            border: 1px solid red;
-        }
-    </style>
-</head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="style.css"> </head>
 <body>
-    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden py-6 bg-gray-50">
-        <div class="relative bg-white px-6 pb-5 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
-            <div class="mx-auto max-w-md">
-                <h2 class="text-2xl text-center font-bold my-5">
-                    Registration Form
-                </h2>
-                <div class="divide-y divide-gray-300/50">
-                    <div class="space-y-6 text-base leading-7 text-gray-600">
-                        <form id="user-form">
-                            <label for="name" class="block font-medium">Name</label>
-                            <input type="text" id="name" name="name" required class="block w-full bg-gray-100 rounded-lg py-3 px-4 mb-5 shadow-md" placeholder="Enter full name"><br/>
-
-                            <label for="email" class="block font-medium">Email</label>
-                            <input type="email" id="email" name="email" required class="block w-full bg-gray-100 rounded-lg py-3 px-4 mb-5 shadow-md" placeholder="Enter email"><br/>
-
-                            <label for="password" class="block font-medium">Password</label>
-                            <input type="password" id="password" name="password" required class="block w-full bg-gray-100 rounded-lg py-3 px-4 mb-5 shadow-md" placeholder="Enter password"><br/>
-
-                            <label for="dob" class="block font-medium">Date of Birth</label>
-                            <input type="date" id="dob" name="dob" required class="block w-full bg-gray-100 rounded-lg py-3 px-4 mb-5 shadow-md"><br/>
-
-                            <label for="acceptTerms" class="block font-medium">Accept our Terms & Conditions</label>
-                            <input type="checkbox" id="acceptTerms" name="acceptTerms" required class="block mb-5"><br/>
-
-                            <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-400">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  <div class="container">  <div class="form-wrapper">  <h2>Registration Form</h2>
+      <form id="user_form">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required placeholder="Enter Full Name">
         </div>
-
-        <div class="relative bg-white px-4 mt-5 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-10">
-            <div class="mx-auto">
-                <h2 class="text-xl text-center font-bold">Entries</h2>
-                <div id="user-entries" class="divide-y divide-gray-300/50"></div>
-            </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required placeholder="Enter Email Address">
         </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required placeholder="Enter Password">
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required min="1969-01-01" max="<?php echo date('Y-m-d'); ?>"> <span id="dob-error" class="error-message"></span> </div>
+        <div class="form-group">
+          <label for="acceptTerms">
+            <input type="checkbox" id="acceptTerms" name="acceptTerms" required> Accept Terms & Conditions
+          </label>
+        </div>
+        <button type="submit" id="submit">Submit</button>
+      </form>
     </div>
-
-    <script src="app.js"></script>
-</body>
+    <div class="entries-wrapper">  <h2>Entries</h2>
+      <div id="user-entries"></div>
+    </div>
+  </div>
+  <script src="script.js"></script> </body>
 </html>
